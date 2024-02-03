@@ -1,4 +1,3 @@
-// Navibar.jsx
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -20,7 +19,15 @@ const Navibar = () => {
             />
           </Navbar.Brand>
           <Nav className="ml-auto">
-            <Nav.Link href="#home">EnteNadu</Nav.Link>
+            <Nav.Link href="#home">
+              <img
+                src="/entelogo.svg" // Replace with the path to your small logo SVG
+                width="120"
+                height="auto"
+                className="d-inline-block align-middle mr-1" // Adjust margins as needed
+                alt="Small Logo"
+              />
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
