@@ -1,14 +1,12 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Carousel from './components/Carousel';
-import Carousel2 from './components/Carousel2';
+import Header from './components/Header';
+import Navibar from './components/Navibar';
 
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Carousel />
-      <Carousel2 />
+      <Navibar />
+      <Header />
     </div>
   );
 };
