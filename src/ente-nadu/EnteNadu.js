@@ -17,9 +17,13 @@
             </table>
 
             <div className="en-page-action1">
-              <Link className="btn-btn-primary" to="/entenadu/registration">
-                REGISTER
-              </Link>
+            <button>
+    Register
+    <div class="arrow-wrapper">
+        <div class="arrow"></div>
+
+    </div>
+</button>
             </div>
 
             <div className="en-page-footer">
