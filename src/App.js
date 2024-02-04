@@ -1,13 +1,22 @@
 import React from 'react';
-import Header from './components/Header';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
 import Navibar from './components/Navibar';
+import EnteNadu from './ente-nadu/EnteNadu';
+import EnteNaduReg from './ente-nadu/EnteNaduReg';
 
 const App = () => {
   return (
-    <div>
-      <Navibar />
-      <Header />
-    </div>
+    <Router>
+      <div>
+        <Navibar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/entenadu" element={<EnteNadu />} />
+          <Route path="/entenadu/registration" element={<EnteNaduReg />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
