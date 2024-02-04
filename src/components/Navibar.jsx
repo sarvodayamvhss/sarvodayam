@@ -1,15 +1,19 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import '../Styles/Navibar.css';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
 const Navibar = () => {
   return (
     <div>
-      <Navbar className="bg-body-tertiary" bg="dark" data-bs-theme="dark" expand="md">
+      <Navbar
+        className="bg-body-tertiary"
+        bg="dark"
+        data-bs-theme="dark"
+        expand="md"
+      >
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               src="/nav.svg"
               width="150"
@@ -19,12 +23,12 @@ const Navibar = () => {
             />
           </Navbar.Brand>
           <Nav className="ml-auto">
-            <Nav.Link href="#home">
+            <Nav.Link href="/entenadu">
               <img
-                src="/entelogo.svg" // Replace with the path to your small logo SVG
+                src="/entelogo.svg"
                 width="120"
                 height="auto"
-                className="d-inline-block align-middle mr-1" // Adjust margins as needed
+                className="d-inline-block align-middle mr-1"
                 alt="Small Logo"
               />
             </Nav.Link>

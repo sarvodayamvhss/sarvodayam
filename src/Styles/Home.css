@@ -44,8 +44,8 @@ a{
     backface-visibility: hidden;
     transform: translateZ(0);
     background: #1B2030 url('/public/background2.jpeg') 50% 0 no-repeat;
-    background-size: contain; /* Change to 'cover' for better responsiveness */
-    background-attachment: scroll; /* Change to 'scroll' for better responsiveness */
+    background-size: contain;
+    background-attachment: scroll;
     z-index: -2;
   }
 .header a{
@@ -143,11 +143,11 @@ a{
     height: auto;
     min-height: auto;
     max-height: none;
-    padding-bottom: 20px; /* Adjust as needed for spacing */
+    padding-bottom: 20px;
   }
 
   .header:before {
-    height: 100%; /* Adjust to 100% for better visibility */
+    height: 100%;
     background-size: cover;
   }
 }
