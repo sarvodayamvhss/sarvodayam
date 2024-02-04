@@ -1,7 +1,6 @@
   import React from "react";
   import "./style.css";
-  import { Link } from "react-router-dom";
-
+ 
   function EnteNadu() {
     return (
         <div className="container-fluid">
