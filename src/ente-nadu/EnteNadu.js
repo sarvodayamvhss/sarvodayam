@@ -16,13 +16,14 @@
             </table>
 
             <div className="en-page-action1">
+              <a href="/entenadu/registration">
             <button>
     Register
     <div class="arrow-wrapper">
         <div class="arrow"></div>
 
     </div>
-</button>
+</button></a>
             </div>
 
             <div className="en-page-footer">
