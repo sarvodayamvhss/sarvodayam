@@ -86,25 +86,33 @@ function EnteNaduReg() {
     }
   };
 
-  const handleDocumentUpload = (event) => {
+  const handleDocumentUpload = async (event) => {
     const file = event.target.files[0];
-
+  
     if (file) {
-      if (file.type === "application/pdf") {
-        const fileSizeInMB = file.size / (1024 * 1024);
-
-        if (fileSizeInMB <= 2) {
-          setDocumentFile(file);
-        } else {
-          alert(
-            "Aadhaar card size exceeds the limit of 2 MB. Please select a smaller file."
-          );
+      if (file.type.startsWith("image/")) {
+        try {
+          // Compress image if it is an image file
+          const compressedImage = await compressImage(file);
+  
+          // Check if compressed file size is under 2 MB
+          if (compressedImage.size / (1024 * 1024) <= 2) {
+            setDocumentFile(compressedImage);
+          } else {
+            alert("Compressed image size exceeds the limit of 2 MB. Please select a smaller image.");
+            event.target.value = null;
+          }
+        } catch (error) {
+          console.error("Error compressing image:", error);
+          alert("Error compressing image. Please try again with a different image.");
           event.target.value = null;
         }
+      } else if (file.type === "application/pdf") {
+        // If it's a PDF file, proceed without compression
+        setDocumentFile(file);
       } else {
-        alert(
-          "Invalid file type. Please select a valid PDF file for the Aadhaar card."
-        );
+        // Invalid file type
+        alert("Invalid file type. Please select a valid PDF or image file for the document.");
         event.target.value = null;
       }
     }
