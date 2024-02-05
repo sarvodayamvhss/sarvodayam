@@ -124,9 +124,12 @@ a{
   50% { transform: scale(1.2) translateY(-400px)}
 }
 .content{  
+  margin-top: 50px;
   padding:1% 10%;
   text-align:justify;
   font-weight:bold;
+  font-size:larger;
+
 }
 .btn{
   color:#333;
@@ -154,4 +157,9 @@ a{
     height: 100%;
     background-size: cover;
   }
+  .content{
+    font-size: medium;
+  }
+
+
 }

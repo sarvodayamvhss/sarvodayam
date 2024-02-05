@@ -13,23 +13,18 @@ const Header = () => {
   }, []);
   return (
     <div>
-      <div class="header">
-        <div class="sides"></div>
-        <div class="info">
+      <div className="header">
+        <div className="sides"></div>
+        <div className="info">
           <h1>Sarvodayam Vhss, Aryampadam</h1>
-          <div class="meta">
+          <div className="meta">
             <br />
           </div>
         </div>
       </div>
-      <section class="content">
+      <section className="content">
         <p>
-        1955 ൽ കവിയായിരുന്ന പീയാർ മുണ്ടത്തിക്കോടാണ് സർവ്വോദയം വൊക്കേഷണൽ ഹയർ സെക്കൻ്ററി സ്കൂൾ, 
-        ആര്യംപാടത്ത് സ്ഥാപിച്ചത്.  തുടക്കത്തിൽ  സർവ്വോദയം U P സ്കൂളായിരുന്നുവെങ്കിലും, 1983 ൽ ഹൈ സ്കൂളായും, 
-        2000-ൽ വൊക്കേഷണൽ ഹയർ സെക്കൻ്ററി സ്കൂളായും ഉയർത്തപ്പെട്ടു. നല്ല വിജയശതമാനത്തോടൊപ്പം, 
-        പാഠ്യേതര പ്രവർത്തനങ്ങളിലും സർവ്വോദയം മികവു പുലർത്തുന്നു.  കൂടാതെ, ATL (Atal Tinkering Lab) , 
-        JRC (Junior Red Cross) , NSS ( National Service Scheme), SPC (Student Police Cadet), Little Kites, Scouts & Guides
-         തുടങ്ങിയ യൂണിറ്റുകൾ സർവ്വോദയത്തിന് മാറ്റു കൂട്ടുന്നു.
+        Sarvodayam Vocational Higher Secondary School, Aryampadam was established in 1955 by Peeyar Mundathicode, a poet.  Although Sarvodayam was initially a UP School, it was upgraded to a High School in 1983 and a Vocational Higher Secondary School in 2000.  Along with a good pass percentage, Sarvodayam also excels in extra-curricular activities.  Also, units like ATL (Atal Tinkering Lab), JRC (Junior Red Cross), NSS (National Service Scheme), SPC (Student Police Cadet), Little Kites, Scouts & Guides add to the education.
         </p>
       </section>
     </div>
