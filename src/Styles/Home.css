@@ -124,7 +124,7 @@ a{
   50% { transform: scale(1.2) translateY(-400px)}
 }
 .content{  
-  padding:3% 10%;
+  padding:1% 10%;
   text-align:justify;
   font-weight:bold;
 }
