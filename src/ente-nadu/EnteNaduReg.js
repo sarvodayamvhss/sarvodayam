@@ -9,6 +9,7 @@ function EnteNaduReg() {
   const [documentFile, setDocumentFile] = useState(null);
   const [isFirmSelected, setIsFirmSelected] = useState(false);
   const [isStudentOfVHSS, setIsStudentOfVHSS] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
@@ -313,19 +314,31 @@ function EnteNaduReg() {
                 required
               />
             </div>
-            <div
-              className="form-group col-md-6"
-              style={{ marginBottom: "15px" }}
-            >
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Password"
-                required
-              />
-            </div>
+            <div className="form-group col-md-6" style={{ marginBottom: "15px" }}>
+  <label htmlFor="password">Password</label>
+  <div className="input-group">
+    <input
+      type={showPassword ? "text" : "password"}
+      className="form-control"
+      id="password"
+      placeholder="Password"
+      required
+    />
+    <div className="input-group-append">
+      <div
+        className="input-group-text"
+        style={{ cursor: "pointer" }}
+        onClick={() => setShowPassword(!showPassword)}
+      >
+        <i
+  className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
+  style={{ fontSize: "1em", lineHeight: "1.5em" }} 
+></i>
+      </div>
+    </div>
+  </div>
+</div>
+
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
