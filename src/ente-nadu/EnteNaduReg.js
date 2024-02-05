@@ -271,10 +271,11 @@ function EnteNaduReg() {
             >
               <label htmlFor="inputZip">Pincode</label>
               <input
-                type="number"
+                type="tel"
                 className="form-control"
                 id="pincode"
                 placeholder="Pincode"
+                pattern="[0-9]+"
                 required
               />
             </div>
@@ -294,10 +295,11 @@ function EnteNaduReg() {
             >
               <label htmlFor="phone">Phone</label>
               <input
-                type="number"
+                type="tel"
                 className="form-control"
                 id="phone"
                 placeholder="Phone"
+                pattern="[0-9]+"
                 required
               />
             </div>
@@ -344,10 +346,11 @@ function EnteNaduReg() {
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label htmlFor="aadhaarNo">Aadhaar No</label>
             <input
-              type="number"
+              type="tel"
               className="form-control custom-input"
               id="aadhaarNo"
               placeholder="Aadhaar No"
+              pattern="[0-9]+"
               required
             />
           </div>
@@ -555,10 +558,11 @@ function EnteNaduReg() {
             >
               <label htmlFor="wardNo">Ward No</label>
               <input
-                type="number"
+                type="tel"
                 className="form-control"
                 id="wardNo"
                 placeholder="Ward No"
+                pattern="[0-9]+"
                 required
               />
             </div>
