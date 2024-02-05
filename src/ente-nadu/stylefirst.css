@@ -18,7 +18,7 @@
 .en-page-footer {
     padding: 2%;
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     margin: 0%;
 }
 
@@ -119,8 +119,8 @@ button:hover .arrow:before {
     }
 
     .en-page-footer {
-        padding: 5%;
+        padding: 10%;
         text-align: center;
-        color: rgb(205, 239, 189);
+        color: rgb(0, 0, 0);
     }
 }

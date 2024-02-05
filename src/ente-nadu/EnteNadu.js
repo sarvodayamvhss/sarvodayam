@@ -3,10 +3,10 @@ import "./stylefirst.css";
 
 function EnteNadu() {
   useEffect(() => {
-    // Add class to the body when the component mounts
+ 
     document.body.classList.add('en-page-ente-nadu');
 
-    // Remove class when the component unmounts
+ 
     return () => {
       document.body.classList.remove('en-page-ente-nadu');
     };
@@ -40,8 +40,8 @@ function EnteNadu() {
             <a href="/entenadu/registration">
           <button>
   Register
-  <div class="arrow-wrapper">
-      <div class="arrow"></div>
+  <div className="arrow-wrapper">
+      <div className="arrow"></div>
 
   </div>
 </button></a>

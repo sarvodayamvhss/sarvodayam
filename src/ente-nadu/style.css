@@ -1,3 +1,22 @@
+.btn-primary{
+  --primary-color: #021f08;
+  --secondary-color: #fff;
+  --hover-color: #1d9a36;
+  --arrow-width: 15px;
+  --arrow-stroke: 3px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 0.8em 1.5em;
+  background: var(--primary-color);
+
+  justify-content: center !important;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold !important;
+}
 .custom-input {
   width: 50%;
 }
@@ -111,7 +130,8 @@ button:hover .arrow:before {
 }
 
 .form-container {
-  background-color: #98FB98;
+ 
+ background:rgb(130, 235, 142);
   min-width: 100%;
   max-height: 100%;
   display: flex;
