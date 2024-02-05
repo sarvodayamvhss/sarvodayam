@@ -1,171 +1,239 @@
 .container-fluid {
+  height: 1000px;
+  max-height: 100%;
+  background-image: url(/public/ente-nadu/background.jpg) !important;
+  background-repeat: no-repeat !important;
+  background-size: 100%;
+  background-position: center !important;
+  position: static;
+  overflow: hidden;
+}
+
+.custom-input {
+  width: 50%;
+}
+
+.en-home-table {
+  width: 100%;
+  height: 480px;
+}
+
+.en-home-table td {
+  padding-top: 150px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.en-home-table img {
+  width: 360px;
+}
+
+.en-page-header {
+  text-align: center;
+  width: 100%;
+  padding-top: 30px;
+}
+
+.en-page-header-logo {
+  margin: auto;
+  width: 360px;
+}
+
+.en-page-footer {
+  margin: 30px 0px;
+  text-align: center;
+}
+
+.en-page-action {
+  width: 100%;
+  margin: 15px 0px;
+  text-align: center;
+}
+
+.en-page-action1 {
+  width: 100%;
+  margin: 15px 1100px;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 104px;
+}
+
+.en-upload-file label {
+  display: block;
+}
+
+#imageUpload {
+  display: none;
+}
+
+#profileImage {
+  cursor: pointer;
+}
+
+#profile-container {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  overflow: hidden;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+
+}
+
+#profile-container img {
+  width: 150px;
+  height: 150px;
+}
+
+@media only screen and (max-width: 767px) {
+  .custom-input {
+    width: 100%;
+  }
+
+  .container-fluid {
     height: 1000px;
     max-height: 100%;
     background-image: url(/public/ente-nadu/background.jpg) !important;
     background-repeat: no-repeat !important;
     background-size: 100%;
     background-position: center !important;
-
-}
-
-.custom-input {
-    width: 50%;
   }
 
-.en-home-table {
-    width: 100%;
-    height: 480px;
-}
-
-.en-home-table td {
-    padding-top: 150px;
+  .en-home-table td {
     vertical-align: middle;
     text-align: center;
-}
+  }
 
-.en-home-table img {
-    width: 360px;
-}
-
-.en-page-header {
-    text-align: center;
+  .en-page-action1 {
     width: 100%;
-    padding-top: 30px;
-}
-
-.en-page-header-logo {
-    margin: auto;
-    width: 360px;
-}
-
-.en-page-footer {
-    margin: 30px 0px;
-    text-align: center;
-}
-
-.en-page-action {
-    width: 100%;
-    margin: 15px 0px;
-    text-align: center;
-}
-.en-page-action1 {
-    width: 100%;
-    margin: 15px 1100px;
+    margin: 150px 75px;
     text-align: right;
-    padding-right: 10px;
-    padding-top: 104px;
-}
-
-.en-upload-file label{
-    display: block;
-}
-
-#imageUpload {
-    display: none;
-}
-
-#profileImage {
-    cursor: pointer;
-}
-
-#profile-container {
-    width: 150px;
-    height: 150px;
-    margin: auto;
-    overflow: hidden;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-
-}
-
-#profile-container img {
-    width: 150px;
-    height: 150px;
-}
-@media only screen and (max-width: 767px) {
-    .custom-input {
-        width: 100%; 
-    }
-    .container-fluid {
-        height: 1000px;
-        max-height: 100%;
-        background-image: url(/public/ente-nadu/background.jpg) !important;
-        background-repeat: no-repeat !important;
-        background-size: 100%;
-        background-position: center !important;
-    
-    }
-    .en-home-table td {
-        vertical-align: middle;
-        text-align: center;
-    }
-    .en-page-action1 {
-        width: 100%;
-        margin: 150px 75px;
-        text-align: right;
-        padding-right: 40px;
-        padding-top: 40px;
-    }
+    padding-right: 40px;
+    padding-top: 40px;
+  }
 }
 
 button {
-    --primary-color: #021f08;
-    --secondary-color: #fff;
-    --hover-color: #1d9a36;
-    --arrow-width: 15px;
-    --arrow-stroke: 3px;
-    box-sizing: border-box;
-    border: 0;
-    border-radius: 20px;
-    color: var(--secondary-color);
-    padding: 0.8em 1.5em;
-    background: var(--primary-color);
-    display: flex;
-    transition: 0.2s background;
-    align-items: center;
-    gap: 0.6em;
-    font-weight: bold;
+  --primary-color: #021f08;
+  --secondary-color: #fff;
+  --hover-color: #1d9a36;
+  --arrow-width: 15px;
+  --arrow-stroke: 3px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 0.8em 1.5em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+button .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+button .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+button:hover {
+  background-color: var(--hover-color);
+}
+
+button:hover .arrow {
+  background: var(--secondary-color);
+}
+
+button:hover .arrow:before {
+  right: 0;
+}
+
+.form-container {
+  background-color: #98FB98;
+  min-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.registeration-container {
+  background-color: aqua;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.custom-input {
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.form-group.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.en-upload-file {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#runFirmCheckboxdiv {
+  margin-top: 15px;
+}
+
+/* Mobile view styles */
+@media only screen and (max-width: 767px) {
+  .form-group.col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-right: 0;
+    padding-left: 0;
   }
-  button .arrow-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  button .arrow {
-    margin-top: 1px;
-    width: var(--arrow-width);
-    background: var(--primary-color);
-    height: var(--arrow-stroke);
-    position: relative;
-    transition: 0.2s;
-  }
-  
-  button .arrow::before {
-    content: "";
-    box-sizing: border-box;
-    position: absolute;
-    border: solid var(--secondary-color);
-    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
-    display: inline-block;
-    top: -3px;
-    right: 3px;
-    transition: 0.2s;
-    padding: 3px;
-    transform: rotate(-45deg);
-  }
-  
-  button:hover {
-    background-color: var(--hover-color);
-  }
-  
-  button:hover .arrow {
-    background: var(--secondary-color);
-  }
-  
-  button:hover .arrow:before {
-    right: 0;
-  }
+}
