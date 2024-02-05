@@ -42,7 +42,7 @@ function EnteNaduReg() {
       if (file.type.startsWith("image/")) {
         const fileSizeInKB = file.size / 1024;
 
-        // Check if the file size is within the limit (750 KB)
+
         if (fileSizeInKB <= 750) {
           const reader = new FileReader();
           reader.onload = async (e) => {
@@ -52,7 +52,7 @@ function EnteNaduReg() {
           reader.readAsDataURL(file);
         } else {
           try {
-            // Compress image if size > 750KB
+
             const compressedImage = await compressImage(file);
 
             const compressedFileSizeInKB = compressedImage.size / 1024;
@@ -90,33 +90,32 @@ function EnteNaduReg() {
     const file = event.target.files[0];
   
     if (file) {
-      if (file.type.startsWith("image/")) {
+      if (file.type.startsWith("image/") || file.type === "application/pdf") {
         try {
-          // Compress image if it is an image file
-          const compressedImage = await compressImage(file);
-  
-          // Check if compressed file size is under 2 MB
-          if (compressedImage.size / (1024 * 1024) <= 2) {
-            setDocumentFile(compressedImage);
+
+          const compressedFile = file.type.startsWith("image/")
+            ? await compressImage(file)
+            : file;
+
+          if (compressedFile.size / (1024 * 1024) <= 2) {
+            setDocumentFile(compressedFile);
           } else {
-            alert("Compressed image size exceeds the limit of 2 MB. Please select a smaller image.");
+            alert("File size exceeds the limit of 2 MB. Please select a smaller file.");
             event.target.value = null;
           }
         } catch (error) {
-          console.error("Error compressing image:", error);
-          alert("Error compressing image. Please try again with a different image.");
+          console.error("Error handling document upload:", error);
+          alert("Error handling document upload. Please try again with a different file.");
           event.target.value = null;
         }
-      } else if (file.type === "application/pdf") {
-        // If it's a PDF file, proceed without compression
-        setDocumentFile(file);
       } else {
-        // Invalid file type
+
         alert("Invalid file type. Please select a valid PDF or image file for the document.");
         event.target.value = null;
       }
     }
   };
+  
 
   const openFileInput = () => {
     document.getElementById("imageUpload").click();
@@ -156,7 +155,7 @@ function EnteNaduReg() {
     const pincodeInput = document.getElementById("pincode");
     const pincodeValue = pincodeInput.value;
 
-    // Validate pincode length
+
     if (pincodeValue.length !== 6) {
       var errorMessage = "Pincode must be of 6 digits\n";
     }
@@ -164,7 +163,7 @@ function EnteNaduReg() {
     const phoneInput = document.getElementById("phone");
     const phoneValue = phoneInput.value;
 
-    // Validate phone number length
+
     if (phoneValue.length !== 10) {
       errorMessage =
         (errorMessage || "") + "Phone number must be of 10 digits\n";
@@ -173,7 +172,6 @@ function EnteNaduReg() {
     const aadhaarInput = document.getElementById("aadhaarNo");
     const aadhaarValue = aadhaarInput.value;
 
-    // Validate Aadhaar number length
     if (aadhaarValue.length !== 12) {
       errorMessage =
         (errorMessage || "") + "Aadhaar number must be of 12 digits\n";
@@ -183,10 +181,10 @@ function EnteNaduReg() {
       alert(errorMessage);
       return;
     }
-    // Save data to the database under the user's email name + phone num
+
     const userID = formData.email.split("@")[0] + formData.phone;
 
-    // Upload profile image
+
     if (profileImage !== "/ente-nadu/def_pfp.jpg") {
       const profileImageRef = storage.child(`profile_images/${userID}`);
       profileImageRef.putString(profileImage, "data_url").then(() => {
@@ -196,7 +194,7 @@ function EnteNaduReg() {
       alert("Please select a profile image");
     }
 
-    // Upload document file (Aadhaar)
+
     if (documentFile) {
       const documentRef = storage.child(`documents/aadhaar/${userID}`);
       documentRef.put(documentFile).then(() => {
