@@ -1,7 +1,16 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "../Styles/Home.css";
 
 const Header = () => {
+  useEffect(() => {
+    // Add class to the body when the component mounts
+    document.body.classList.add('home-page');
+
+    // Remove class when the component unmounts
+    return () => {
+      document.body.classList.remove('home-page');
+    };
+  }, []);
   return (
     <div>
       <div class="header">

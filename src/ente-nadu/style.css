@@ -1,31 +1,5 @@
-.container-fluid {
-  height: 1000px;
-  max-height: 100%;
-  background-image: url(/public/ente-nadu/background.jpg) !important;
-  background-repeat: no-repeat !important;
-  background-size: 100%;
-  background-position: center !important;
-  position: static;
-  overflow: hidden;
-}
-
 .custom-input {
   width: 50%;
-}
-
-.en-home-table {
-  width: 100%;
-  height: 480px;
-}
-
-.en-home-table td {
-  padding-top: 150px;
-  vertical-align: middle;
-  text-align: center;
-}
-
-.en-home-table img {
-  width: 360px;
 }
 
 .en-page-header {
@@ -39,10 +13,6 @@
   width: 360px;
 }
 
-.en-page-footer {
-  margin: 30px 0px;
-  text-align: center;
-}
 
 .en-page-action {
   width: 100%;
@@ -50,13 +20,6 @@
   text-align: center;
 }
 
-.en-page-action1 {
-  width: 100%;
-  margin: 15px 1100px;
-  text-align: right;
-  padding-right: 10px;
-  padding-top: 104px;
-}
 
 .en-upload-file label {
   display: block;
@@ -69,7 +32,6 @@
 #profileImage {
   cursor: pointer;
 }
-
 #profile-container {
   width: 150px;
   height: 150px;
@@ -93,27 +55,6 @@
     width: 100%;
   }
 
-  .container-fluid {
-    height: 1000px;
-    max-height: 100%;
-    background-image: url(/public/ente-nadu/background.jpg) !important;
-    background-repeat: no-repeat !important;
-    background-size: 100%;
-    background-position: center !important;
-  }
-
-  .en-home-table td {
-    vertical-align: middle;
-    text-align: center;
-  }
-
-  .en-page-action1 {
-    width: 100%;
-    margin: 150px 75px;
-    text-align: right;
-    padding-right: 40px;
-    padding-top: 40px;
-  }
 }
 
 button {
@@ -134,13 +75,6 @@ button {
   gap: 0.6em;
   font-weight: bold;
 }
-
-button .arrow-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 button .arrow {
   margin-top: 1px;
   width: var(--arrow-width);
@@ -230,6 +164,27 @@ label {
 
 /* Mobile view styles */
 @media only screen and (max-width: 767px) {
+  .custom-input {
+    width: 100%;
+    padding: 10px; /* Increase padding for better visibility */
+  }
+
+  .form-group {
+    margin-bottom: 20px; /* Increase margin for better spacing */
+  }
+
+  label {
+    font-size: 14px; /* Adjust font size for better readability */
+  }
+
+  button {
+    font-size: 16px; /* Adjust font size for better readability */
+  }
+
+  .form-row {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
+
   .form-group.col-md-6 {
     flex: 0 0 100%;
     max-width: 100%;

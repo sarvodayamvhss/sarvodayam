@@ -8,10 +8,14 @@ function EnteNaduReg() {
   const [profileImage, setProfileImage] = useState("/ente-nadu/def_pfp.jpg");
   const [documentFile, setDocumentFile] = useState(null);
   const [isFirmSelected, setIsFirmSelected] = useState(false);
+  const [isStudentOfVHSS, setIsStudentOfVHSS] = useState(false);
   const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
     setIsFirmSelected(!isFirmSelected);
+  };
+  const handleStudentCheckboxChange = () => {
+    setIsStudentOfVHSS(!isStudentOfVHSS);
   };
 
   const compressImage = async (file) => {
@@ -125,6 +129,8 @@ function EnteNaduReg() {
       skillSector: document.getElementById("skillSector").value,
       bloodGroup: document.getElementById("bloodGroup").value,
       experience: document.getElementById("experience").value,
+      isStudent: document.getElementById("studentOfVHSSCheckbox").checked,
+      StudentId: document.getElementById("studentID").value,
       runFirm: document.getElementById("runFirmCheckbox").checked,
       nameOfFirm: document.getElementById("nameOfFirm").value,
       addressOfFirm: document.getElementById("addressOfFirm").value,
@@ -204,11 +210,11 @@ function EnteNaduReg() {
             <div className="form-group col-md-12">
               <img src="/logo.png" alt="" className="en-page-header-logo" />
             </div>
-            <div className="form-group col-md-0">
+            <div className="form-group col-md-0 ">
               <div
                 id="profile-container"
                 onClick={openFileInput}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer",}}
               >
                 <img
                   id="profileImage"
@@ -410,6 +416,36 @@ function EnteNaduReg() {
               placeholder="Experience"
               required
             />
+          </div>
+          <div className="form-group" style={{ marginBottom: "15px" }}>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="studentOfVHSSCheckbox"
+              value="0"
+              onChange={handleStudentCheckboxChange}
+              checked={isStudentOfVHSS}
+            />
+            <label className="form-check-label" htmlFor="studentOfVHSSCheckbox">
+              Are you a student of VHSS Aryampadam?
+            </label>
+          </div>
+        </div>
+        <div
+          id="studentFields"
+          style={{ display: isStudentOfVHSS ? "block" : "none" }}
+        >
+          <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label htmlFor="studentID">Student ID</label>
+            <input
+              type="text"
+              className="form-control"
+              id="studentID"
+              placeholder="Student ID"
+              required={isStudentOfVHSS}
+            />
+          </div>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>

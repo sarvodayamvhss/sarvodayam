@@ -5,6 +5,9 @@ html,body{
   font-family: 'Josefin Sans', sans-serif;
 
 }
+body.home-page {
+  overflow:hidden;
+}
 a{
   text-decoration:none
 }
@@ -121,7 +124,7 @@ a{
   50% { transform: scale(1.2) translateY(-400px)}
 }
 .content{  
-  padding:5% 10%;
+  padding:3% 10%;
   text-align:justify
 }
 .btn{
