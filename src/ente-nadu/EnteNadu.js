@@ -49,7 +49,7 @@ function EnteNadu() {
 
           <div className="en-page-footer">
             <span>
-              Powered by <b>Sarvodayam VHSS</b>
+             | Powered by Sarvodayam VHSS |
             </span>
           </div>
       </div>
