@@ -275,7 +275,7 @@ function EnteNaduReg() {
                 className="form-control"
                 id="pincode"
                 placeholder="Pincode"
-                pattern="[0-9]"
+                pattern="[0-9]+"
                 required
               />
             </div>
@@ -299,7 +299,7 @@ function EnteNaduReg() {
                 className="form-control"
                 id="phone"
                 placeholder="Phone"
-                pattern="[0-9]"
+                pattern="[0-9]+"
                 required
               />
             </div>
@@ -350,7 +350,7 @@ function EnteNaduReg() {
               className="form-control custom-input"
               id="aadhaarNo"
               placeholder="Aadhaar No"
-              pattern="[0-9]"
+              pattern="[0-9]+"
               required
             />
           </div>
@@ -562,7 +562,7 @@ function EnteNaduReg() {
                 className="form-control"
                 id="wardNo"
                 placeholder="Ward No"
-                pattern="[0-9]"
+                pattern="[0-9]+"
                 required
               />
             </div>
