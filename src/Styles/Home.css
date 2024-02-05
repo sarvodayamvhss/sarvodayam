@@ -125,7 +125,8 @@ a{
 }
 .content{  
   padding:3% 10%;
-  text-align:justify
+  text-align:justify;
+  font-weight:bold;
 }
 .btn{
   color:#333;

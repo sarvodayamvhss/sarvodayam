@@ -24,14 +24,12 @@ const Header = () => {
       </div>
       <section class="content">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nisl
-          turpis, porttitor et finibus id, viverra a metus. Praesent non ante
-          sed orci posuere varius quis sit amet dui. Cras molestie magna orci,
-          id gravida dolor molestie in. Duis sollicitudin turpis quis tortor
-          egestas, ut ultrices nisl elementum. Vestibulum sed ipsum eget nulla
-          laoreet cursus in ac sem. Integer a suscipit justo, quis aliquam
-          sapien. Maecenas et tellus nibh. Vivamus tincidunt eros id commodo
-          pellentesque.
+        1955 ൽ കവിയായിരുന്ന പീയാർ മുണ്ടത്തിക്കോടാണ് സർവ്വോദയം വൊക്കേഷണൽ ഹയർ സെക്കൻ്ററി സ്കൂൾ, 
+        ആര്യംപാടത്ത് സ്ഥാപിച്ചത്.  തുടക്കത്തിൽ  സർവ്വോദയം U P സ്കൂളായിരുന്നുവെങ്കിലും, 1983 ൽ ഹൈ സ്കൂളായും, 
+        2000-ൽ വൊക്കേഷണൽ ഹയർ സെക്കൻ്ററി സ്കൂളായും ഉയർത്തപ്പെട്ടു. നല്ല വിജയശതമാനത്തോടൊപ്പം, 
+        പാഠ്യേതര പ്രവർത്തനങ്ങളിലും സർവ്വോദയം മികവു പുലർത്തുന്നു.  കൂടാതെ, ATL (Atal Tinkering Lab) , 
+        JRC (Junior Red Cross) , NSS ( National Service Scheme), SPC (Student Police Cadet), Little Kites, Scouts & Guides
+         തുടങ്ങിയ യൂണിറ്റുകൾ സർവ്വോദയത്തിന് മാറ്റു കൂട്ടുന്നു.
         </p>
       </section>
     </div>
