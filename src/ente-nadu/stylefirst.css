@@ -104,6 +104,42 @@ button:hover .arrow:before {
 }
 
 @media (max-width: 768px) {
+    body.en-page-ente-nadu { 
+        background: linear-gradient(to bottom right, rgb(37, 202, 37), rgb(28, 54, 39));
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 100vh;
+        min-height:fit-content;
+        
+      }
+    .en-home-table img {
+        width: 100%;
+    }
+
+    .en-page-action1 {
+        padding-top: 400px;
+    }
+
+    .ente-nadu1 {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .en-page-footer {
+        padding: 10%;
+        text-align: center;
+        color: rgb(0, 0, 0);
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    body.en-page-ente-nadu { 
+        background: linear-gradient(to bottom right, rgb(37, 202, 37), rgb(28, 54, 39));
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 100vh;
+        margin: 0; /* Add this line to remove default margin */
+    }
+
     .en-home-table img {
         width: 100%;
     }

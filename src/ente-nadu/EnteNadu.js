@@ -45,13 +45,13 @@ function EnteNadu() {
 
   </div>
 </button></a>
-          </div>
-
+</div>
           <div className="en-page-footer">
             <span>
              | Powered by Sarvodayam VHSS |
             </span>
           </div>
+      
       </div>
   );
 }
