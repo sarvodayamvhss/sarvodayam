@@ -55,7 +55,7 @@
   width: 150px;
   height: 150px;
   margin: auto;
-  overflow: hidden;
+  overflow: scroll;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
