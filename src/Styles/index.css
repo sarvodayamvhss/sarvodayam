@@ -2,7 +2,7 @@ body.en-page-ente-nadu {
     background: linear-gradient(to bottom right, rgb(37, 202, 37), rgb(28, 54, 39));
     min-width: 100%;
     max-height: 100%;
-    overflow: hidden;
+    overflow: scroll;
     background-size: cover;
     background-repeat: no-repeat;
   }

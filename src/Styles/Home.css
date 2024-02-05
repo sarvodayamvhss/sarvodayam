@@ -6,7 +6,7 @@ html,body{
 
 }
 body.home-page {
-  overflow:hidden;
+  overflow:scroll;
 }
 a{
   text-decoration:none
