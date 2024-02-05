@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import "../Styles/navibar.css"; // Import the CSS file for styling
 
 const Navibar = () => {
   return (
@@ -28,7 +29,7 @@ const Navibar = () => {
                 src="/entelogo.svg"
                 width="120"
                 height="auto"
-                className="d-inline-block align-middle mr-1"
+                className="d-inline-block align-middle mr-1 breathing-icon"
                 alt="Small Logo"
               />
             </Nav.Link>
@@ -40,3 +41,4 @@ const Navibar = () => {
 };
 
 export default Navibar;
+
