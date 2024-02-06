@@ -450,7 +450,7 @@ function EnteNaduReg() {
               checked={isStudentOfVHSS}
             />
             <label className="form-check-label" htmlFor="studentOfVHSSCheckbox">
-              Are you a student of VHSS Aryampadam?
+              Are you a parent of a student in VHSS Aryampadam?
             </label>
           </div>
         </div>
@@ -458,16 +458,34 @@ function EnteNaduReg() {
           id="studentFields"
           style={{ display: isStudentOfVHSS ? "block" : "none" }}
         >
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label htmlFor="studentID">Student ID</label>
-            <input
-              type="text"
-              className="form-control"
-              id="studentID"
-              placeholder="Student ID"
-              required={isStudentOfVHSS}
-            />
-          </div>
+         <div className="form-group" style={{ marginBottom: "15px" }}>
+  <label htmlFor="Class">Class</label>
+  <select
+    className="form-control"
+    id="Class"
+    required={isStudentOfVHSS}
+  >
+    <option value="" disabled selected>Select Class</option>
+    {[...Array(8).keys()].map((index) => (
+      <option key={index} value={index + 5}>{index + 5}</option>
+    ))}
+  </select>
+</div>
+
+<div className="form-group" style={{ marginBottom: "15px" }}>
+  <label htmlFor="Division">Division</label>
+  <select
+    className="form-control"
+    id="Division"
+    required={isStudentOfVHSS}
+  >
+    <option value="" disabled selected>Select Division</option>
+    {['A', 'B', 'C', 'D', 'E', 'AE', 'JSD'].map((division) => (
+      <option key={division} value={division}>{division}</option>
+    ))}
+  </select>
+</div>
+
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
