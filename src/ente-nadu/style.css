@@ -1,3 +1,4 @@
+
 .btn-primary{
   --primary-color: #021f08;
   --secondary-color: #fff;
@@ -128,10 +129,9 @@ button:hover .arrow {
 button:hover .arrow:before {
   right: 0;
 }
-
 .form-container {
- 
  background:rgb(130, 235, 142);
+ background-size: cover;
   min-width: 100%;
   max-height: 100%;
   display: flex;
