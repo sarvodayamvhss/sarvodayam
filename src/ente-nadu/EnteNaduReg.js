@@ -9,7 +9,6 @@ function EnteNaduReg() {
   const [documentFile, setDocumentFile] = useState(null);
   const [isFirmSelected, setIsFirmSelected] = useState(false);
   const [isStudentOfVHSS, setIsStudentOfVHSS] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
@@ -42,7 +41,6 @@ function EnteNaduReg() {
       if (file.type.startsWith("image/")) {
         const fileSizeInKB = file.size / 1024;
 
-
         if (fileSizeInKB <= 750) {
           const reader = new FileReader();
           reader.onload = async (e) => {
@@ -52,7 +50,6 @@ function EnteNaduReg() {
           reader.readAsDataURL(file);
         } else {
           try {
-
             const compressedImage = await compressImage(file);
 
             const compressedFileSizeInKB = compressedImage.size / 1024;
@@ -88,11 +85,10 @@ function EnteNaduReg() {
 
   const handleDocumentUpload = async (event) => {
     const file = event.target.files[0];
-  
+
     if (file) {
       if (file.type.startsWith("image/") || file.type === "application/pdf") {
         try {
-
           const compressedFile = file.type.startsWith("image/")
             ? await compressImage(file)
             : file;
@@ -100,22 +96,26 @@ function EnteNaduReg() {
           if (compressedFile.size / (1024 * 1024) <= 2) {
             setDocumentFile(compressedFile);
           } else {
-            alert("File size exceeds the limit of 2 MB. Please select a smaller file.");
+            alert(
+              "File size exceeds the limit of 2 MB. Please select a smaller file."
+            );
             event.target.value = null;
           }
         } catch (error) {
           console.error("Error handling document upload:", error);
-          alert("Error handling document upload. Please try again with a different file.");
+          alert(
+            "Error handling document upload. Please try again with a different file."
+          );
           event.target.value = null;
         }
       } else {
-
-        alert("Invalid file type. Please select a valid PDF or image file for the document.");
+        alert(
+          "Invalid file type. Please select a valid PDF or image file for the document."
+        );
         event.target.value = null;
       }
     }
   };
-  
 
   const openFileInput = () => {
     document.getElementById("imageUpload").click();
@@ -131,7 +131,7 @@ function EnteNaduReg() {
       dob: document.getElementById("dob").value,
       phone: document.getElementById("phone").value,
       email: document.getElementById("email").value,
-      password: document.getElementById("password").value,
+      password: "password",
       aadhaarNo: document.getElementById("aadhaarNo").value,
       educationQualification: document.getElementById("eduQualification").value,
       skillSector: document.getElementById("skillSector").value,
@@ -156,14 +156,12 @@ function EnteNaduReg() {
     const pincodeInput = document.getElementById("pincode");
     const pincodeValue = pincodeInput.value;
 
-
     if (pincodeValue.length !== 6) {
       var errorMessage = "Pincode must be of 6 digits\n";
     }
 
     const phoneInput = document.getElementById("phone");
     const phoneValue = phoneInput.value;
-
 
     if (phoneValue.length !== 10) {
       errorMessage =
@@ -185,7 +183,6 @@ function EnteNaduReg() {
 
     const userID = formData.email.split("@")[0] + formData.phone;
 
-
     if (profileImage !== "/ente-nadu/def_pfp.jpg") {
       const profileImageRef = storage.child(`profile_images/${userID}`);
       profileImageRef.putString(profileImage, "data_url").then(() => {
@@ -195,7 +192,6 @@ function EnteNaduReg() {
       alert("Please select a profile image");
       return;
     }
-
 
     if (documentFile) {
       const documentRef = storage.child(`documents/aadhaar/${userID}`);
@@ -212,7 +208,6 @@ function EnteNaduReg() {
 
   return (
     <div className="form-container">
-    
       <div className="registration-container">
         <div className="en-page-header">
           <div className="form-row">
@@ -223,7 +218,7 @@ function EnteNaduReg() {
               <div
                 id="profile-container"
                 onClick={openFileInput}
-                style={{ cursor: "pointer",}}
+                style={{ cursor: "pointer" }}
               >
                 <img
                   id="profileImage"
@@ -324,31 +319,6 @@ function EnteNaduReg() {
                 required
               />
             </div>
-            <div className="form-group col-md-6" style={{ marginBottom: "15px" }}>
-  <label htmlFor="password">Password</label>
-  <div className="input-group">
-    <input
-      type={showPassword ? "text" : "password"}
-      className="form-control"
-      id="password"
-      placeholder="Password"
-      required
-    />
-    <div className="input-group-append">
-      <div
-        className="input-group-text"
-        style={{ cursor: "pointer" }}
-        onClick={() => setShowPassword(!showPassword)}
-      >
-        <i
-  className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
-  style={{ fontSize: "1em", lineHeight: "1.5em" }} 
-></i>
-      </div>
-    </div>
-  </div>
-</div>
-
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -442,52 +412,62 @@ function EnteNaduReg() {
             />
           </div>
           <div className="form-group" style={{ marginBottom: "15px" }}>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="studentOfVHSSCheckbox"
-              value="0"
-              onChange={handleStudentCheckboxChange}
-              checked={isStudentOfVHSS}
-            />
-            <label className="form-check-label" htmlFor="studentOfVHSSCheckbox">
-              Are you a parent of a student in VHSS Aryampadam?
-            </label>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="studentOfVHSSCheckbox"
+                value="0"
+                onChange={handleStudentCheckboxChange}
+                checked={isStudentOfVHSS}
+              />
+              <label
+                className="form-check-label"
+                htmlFor="studentOfVHSSCheckbox"
+              >
+                Are you a parent of a student in VHSS Aryampadam?
+              </label>
+            </div>
           </div>
-        </div>
-        <div
-          id="studentFields"
-          style={{ display: isStudentOfVHSS ? "block" : "none" }}
-        >
-         <div className="form-group" style={{ marginBottom: "15px" }}>
-  <label htmlFor="Class">Class</label>
-  <select
-    className="form-control"
-    id="Class"
-    required={isStudentOfVHSS}
-  >
-    <option value="" disabled selected>Select Class</option>
-    {[...Array(8).keys()].map((index) => (
-      <option key={index} value={index + 5}>{index + 5}</option>
-    ))}
-  </select>
-</div>
+          <div
+            id="studentFields"
+            style={{ display: isStudentOfVHSS ? "block" : "none" }}
+          >
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label htmlFor="Class">Class</label>
+              <select
+                className="form-control"
+                id="Class"
+                required={isStudentOfVHSS}
+              >
+                <option value="" disabled selected>
+                  Select Class
+                </option>
+                {[...Array(8).keys()].map((index) => (
+                  <option key={index} value={index + 5}>
+                    {index + 5}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-<div className="form-group" style={{ marginBottom: "15px" }}>
-  <label htmlFor="Division">Division</label>
-  <select
-    className="form-control"
-    id="Division"
-    required={isStudentOfVHSS}
-  >
-    <option value="" disabled selected>Select Division</option>
-    {['A', 'B', 'C', 'D', 'E', 'AE', 'JSD'].map((division) => (
-      <option key={division} value={division}>{division}</option>
-    ))}
-  </select>
-</div>
-
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label htmlFor="Division">Division</label>
+              <select
+                className="form-control"
+                id="Division"
+                required={isStudentOfVHSS}
+              >
+                <option value="" disabled selected>
+                  Select Division
+                </option>
+                {["A", "B", "C", "D", "E", "AE", "JSD"].map((division) => (
+                  <option key={division} value={division}>
+                    {division}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -653,9 +633,6 @@ function EnteNaduReg() {
         </div>
       </div>
     </div>
-   
-    
-    
   );
 }
 
