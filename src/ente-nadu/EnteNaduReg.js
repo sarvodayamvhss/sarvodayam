@@ -192,6 +192,7 @@ function EnteNaduReg() {
       });
     } else {
       alert("Please select a profile image");
+      return;
     }
 
 
