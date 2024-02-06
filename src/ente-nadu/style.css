@@ -182,27 +182,27 @@ label {
   margin-top: 15px;
 }
 
-/* Mobile view styles */
+
 @media only screen and (max-width: 767px) {
   .custom-input {
     width: 100%;
-    padding: 10px; /* Increase padding for better visibility */
+    padding: 10px; 
   }
 
   .form-group {
-    margin-bottom: 20px; /* Increase margin for better spacing */
+    margin-bottom: 20px; 
   }
 
   label {
-    font-size: 14px; /* Adjust font size for better readability */
+    font-size: 14px; 
   }
 
   button {
-    font-size: 16px; /* Adjust font size for better readability */
+    font-size: 16px;
   }
 
   .form-row {
-    flex-direction: column; /* Stack items vertically on smaller screens */
+    flex-direction: column; 
   }
 
   .form-group.col-md-6 {
@@ -211,4 +211,14 @@ label {
     padding-right: 0;
     padding-left: 0;
   }
+  .form-container {
+ background:rgb(130, 235, 142);
+ background-size: cover;
+  min-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
 }

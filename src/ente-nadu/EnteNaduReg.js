@@ -207,7 +207,6 @@ function EnteNaduReg() {
   };
 
   return (
-    <div className="container">
     <div className="form-container">
       <div className="registration-container">
         <div className="en-page-header">
@@ -634,7 +633,6 @@ function EnteNaduReg() {
         </div>
       </div>
     </div>
-  </div>
   );
 }
 
