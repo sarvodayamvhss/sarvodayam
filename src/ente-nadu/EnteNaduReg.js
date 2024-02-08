@@ -369,7 +369,8 @@ function EnteNaduReg() {
             >
               <label htmlFor="skillSector">Skill Sector</label>
               <select id="skillSector" className="form-control" required>
-              <option>Electrician</option>
+                <option value="">Choose...</option>
+                <option>Electrician</option>
                 <option>Plumber</option>
                 <option>Construction</option>
                 <option>Electrical Appliances Service</option>
