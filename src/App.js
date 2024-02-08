@@ -4,6 +4,8 @@ import Home from './components/Home';
 import Navibar from './components/Navibar';
 import EnteNadu from './ente-nadu/EnteNadu';
 import EnteNaduReg from './ente-nadu/EnteNaduReg';
+import Resetpass from './ente-nadu/Resetpass';
+import Verify from './ente-nadu/Verify';
 
 const App = () => {
   return (
@@ -13,6 +15,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/entenadu" element={<EnteNadu />} />
+          <Route path="/Resetpass" element={<Resetpass />} />
+          <Route path="/Verify" element={<Verify />} />
           <Route path="/entenadu/registration" element={<EnteNaduReg />} />
         </Routes>
       </div>
