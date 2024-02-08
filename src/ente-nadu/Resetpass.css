@@ -57,3 +57,18 @@ body{
     margin-bottom: 20px;
   }
   
+  @media screen and (max-width: 768px) {
+    .reset-pass-container {
+      width: 90%;
+      padding: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .reset-pass-container {
+    
+    width: 80%;
+    max-width: 400px;
+    padding: 30px;
+     }
+  }

@@ -39,7 +39,7 @@ function Resetpass() {
   return (
     <div className="reset-pass-page">
       <div className="reset-pass-container">
-        <h2>Reset Password</h2>
+        <h2>Enter Credentials</h2>
         <form onSubmit={handleResetPassword}>
           <div className="form-group">
             <label htmlFor="phone">Phone number</label>
