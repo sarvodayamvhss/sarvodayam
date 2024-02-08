@@ -15,14 +15,21 @@ function ResetPassword() {
 
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
+
+      // Clear the error message after 2 seconds
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+
       return;
     }
-
 
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       setSuccessMessage("Password reset successfully.");
+      // Clear the error message when the passwords match
+      setError("");
       setTimeout(() => {
         navigate("/");
       }, 3000); // Navigate back to home page after 2 seconds
