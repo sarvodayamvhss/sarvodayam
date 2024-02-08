@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Verify.css"; // Assuming you have a CSS file for styling
+import "./Verify.css"; 
 
 function Verify() {
   const [otp, setOtp] = useState("");
@@ -15,7 +15,7 @@ function Verify() {
     console.log("OTP entered:", otp);
     setLoading(false);
     
-    navigate("/");
+    navigate("/Reset");
   };
 
   return (

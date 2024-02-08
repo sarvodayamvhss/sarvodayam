@@ -6,6 +6,7 @@ import EnteNadu from './ente-nadu/EnteNadu';
 import EnteNaduReg from './ente-nadu/EnteNaduReg';
 import Resetpass from './ente-nadu/Resetpass';
 import Verify from './ente-nadu/Verify';
+import Reset from './ente-nadu/Reset';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/entenadu" element={<EnteNadu />} />
           <Route path="/Resetpass" element={<Resetpass />} />
           <Route path="/Verify" element={<Verify />} />
+          <Route path="/Reset" element={<Reset />} />
           <Route path="/entenadu/registration" element={<EnteNaduReg />} />
         </Routes>
       </div>

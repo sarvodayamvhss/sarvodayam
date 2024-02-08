@@ -1,27 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Resetpass.css";
-import "./Verify"
-
 
 function Resetpass() {
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleResetPassword = async (event) => {
     event.preventDefault();
-    
-    if (phone.length !== 10 || isNaN(phone)) {
-      setError("Phone number must be 10 digits.");
-      return;
-    }
 
+    // Add validation or other logic as needed
 
-    console.log("Reset password OTP sent to:", phone);
-    setLoading(false);
-    navigate("/Verify"); // Redirect to home page (or any other page) after sending the OTP
+    console.log("Reset password request sent for phone number:", phone);
+    console.log("Email address:", email);
+
+    setLoading(true);
+
+    // Simulate a delay for demonstration purposes (replace with actual logic)
+    setTimeout(() => {
+      setLoading(false);
+      alert("Reset password request sent successfully. Please check your phone.");
+      navigate("/Verify"); // Redirect to home page or any other page
+    }, 2000);
   };
 
   return (
@@ -32,12 +35,27 @@ function Resetpass() {
           <div className="form-group">
             <label htmlFor="phone">Phone number</label>
             <input
-              type="text"
+              type="tel"
               className="form-control"
               id="phone"
               placeholder="Enter your Phone number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              required
+              minLength={10}
+              maxLength={10}
+              pattern="[0-9]+"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Enter your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
