@@ -12,18 +12,27 @@ function Resetpass() {
   const handleResetPassword = async (event) => {
     event.preventDefault();
 
-    // Add validation or other logic as needed
+    // Validate phone number
+    if (phone.length !== 10 || isNaN(phone)) {
+      setError("Phone number must be 10 digits.");
+      return;
+    }
 
-    console.log("Reset password request sent for phone number:", phone);
-    console.log("Email address:", email);
+    // Validate email
+    if (!email || !email.includes("@")) {
+      setError("Invalid email address.");
+      return;
+    }
 
-    setLoading(true);
+    // Clear any previous errors
+    setError("");
 
     // Simulate a delay for demonstration purposes (replace with actual logic)
+    setLoading(true);
     setTimeout(() => {
       setLoading(false);
       alert("Reset password request sent successfully. Please check your phone.");
-      navigate("/Verify"); // Redirect to home page or any other page
+      navigate("/Verify"); // Redirect to verification page
     }, 2000);
   };
 

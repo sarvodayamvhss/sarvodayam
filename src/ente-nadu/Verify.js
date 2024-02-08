@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Verify.css"; 
+import "./Verify.css";
 
 function Verify() {
   const [otp, setOtp] = useState("");
@@ -11,11 +11,25 @@ function Verify() {
   const handleVerifyOTP = async (event) => {
     event.preventDefault();
 
+    // Add validation or other logic as needed
 
     console.log("OTP entered:", otp);
-    setLoading(false);
-    
-    navigate("/Reset");
+
+    // Clear any previous errors
+    setError("");
+
+    // Simulate a delay for demonstration purposes (replace with actual logic)
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      if (otp === "1234") {
+        // Correct OTP, navigate to reset password page
+        navigate("/Reset");
+      } else {
+        // Incorrect OTP, display error message
+        setError("Incorrect OTP. Please try again.");
+      }
+    }, 2000);
   };
 
   return (
