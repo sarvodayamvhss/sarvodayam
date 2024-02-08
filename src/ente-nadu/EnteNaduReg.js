@@ -5,6 +5,7 @@ import imageCompression from "browser-image-compression";
 import "./style.css";
 
 function EnteNaduReg() {
+  const [loading, setLoading] = useState(false);
   const [profileImage, setProfileImage] = useState("/ente-nadu/def_pfp.jpg");
   const [documentFile, setDocumentFile] = useState(null);
   const [isFirmSelected, setIsFirmSelected] = useState(false);
@@ -121,8 +122,9 @@ function EnteNaduReg() {
     document.getElementById("imageUpload").click();
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const formData = {
       name: document.getElementById("name").value,
@@ -183,29 +185,34 @@ function EnteNaduReg() {
 
     const userID = formData.email.split("@")[0] + formData.phone;
 
-    if (profileImage !== "/ente-nadu/def_pfp.jpg") {
-      const profileImageRef = storage.child(`profile_images/${userID}`);
-      profileImageRef.putString(profileImage, "data_url").then(() => {
+  try {
+      if (profileImage !== "/ente-nadu/def_pfp.jpg") {
+        const profileImageRef = storage.child(`profile_images/${userID}`);
+        await profileImageRef.putString(profileImage, "data_url");
         console.log("Profile image uploaded successfully!");
-      });
-    } else {
-      alert("Please select a profile image");
-      return;
-    }
+      } else {
+        alert("Please select a profile image");
+        return;
+      }
 
-    if (documentFile) {
-      const documentRef = storage.child(`documents/aadhaar/${userID}`);
-      documentRef.put(documentFile).then(() => {
+      if (documentFile) {
+        const documentRef = storage.child(`documents/aadhaar/${userID}`);
+        await documentRef.put(documentFile);
         console.log("Aadhaar uploaded successfully!");
-      });
+      }
+
+      await dataRef.ref(`registrations/${userID}`).set(formData);
+      console.log("Form data pushed");
+
+      alert("Registration Successful!");
+      navigate("/");
+    } catch (error) {
+      console.error("Error during form submission:", error);
+      alert("Error during form submission. Please try again.");
+    } finally {
+      setLoading(false); // Set loading state to false after submission (success or error)
     }
-
-    dataRef.ref(`registrations/${userID}`).set(formData);
-    console.log("Form data pushed");
-    alert("Registration Successful!");
-    navigate("/");
   };
-
   return (
     <div className="form-container">
       <div className="registration-container">
@@ -364,7 +371,7 @@ function EnteNaduReg() {
                 <option>Construction</option>
                 <option>Electrical Appliances Service</option>
                 <option>Two-Wheeler</option>
-                <option>Three-Wheeler</option>
+                <option>Auto-Rickshaw</option>
                 <option>Car</option>
                 <option>Other Auto Mobiles</option>
                 <option>Ac / Fridge</option>
@@ -379,6 +386,14 @@ function EnteNaduReg() {
                 <option>Aluminium</option>
                 <option>Tile</option>
                 <option>Welding</option>
+                <option>Ambulance</option>
+                <option>Petti Auto</option>
+                <option>Tipper</option>
+                <option>Lawyer</option>
+                <option>Medical</option>
+                <option>Insurance</option>
+                <option>House-Wife</option>
+                <option>Normal User</option>
                 <option>Others</option>
               </select>
             </div>
@@ -620,8 +635,8 @@ function EnteNaduReg() {
           </div>
 
           <div className="en-page-action">
-            <button type="submit" className="btn btn-primary">
-              Register
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {loading ? "Submitting..." : "Register"}
             </button>
           </div>
         </form>
