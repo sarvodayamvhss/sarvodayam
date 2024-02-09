@@ -1,37 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useVerificationContext } from "./VerificationContext";
 import "./Verify.css";
 
-function Verify() {
+function OtpVerify() {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const { verificationData } = useVerificationContext();
+
+  useEffect(() => {
+    if (!verificationData) {
+      navigate("/");
+    }
+  }, [verificationData, navigate]);
+
+  const confirmationResult = verificationData?.confirmationResult;
+
   const handleVerifyOTP = async (event) => {
     event.preventDefault();
-
-    // Add validation or other logic as needed
-
-    console.log("OTP entered:", otp);
-
-    // Clear any previous errors
     setError("");
-
-    // Simulate a delay for demonstration purposes (replace with actual logic)
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      if (otp === "1234") {
-        // Correct OTP, navigate to reset password page
-        navigate("/Reset");
+    
+    try {
+      if (confirmationResult) {
+        await confirmationResult.confirm(otp);
+        navigate("/entenadu/reset-pass/reset");
       } else {
-        // Incorrect OTP, display error message
-        setError("Incorrect OTP. Please try again.");
+        console.error("No confirmation result available.");
+        setError("Error confirming code. Please try again.");
       }
-    }, 2000);
+    } catch (error) {
+      console.error("Error confirming code:", error.message);
+      setError("Incorrect OTP. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
-
+  
   return (
     <div className="verify-otp-page">
       <div className="verify-otp-container">
@@ -61,4 +69,4 @@ function Verify() {
   );
 }
 
-export default Verify;
+export default OtpVerify;

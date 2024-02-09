@@ -1,3 +1,4 @@
+import { getAuth } from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import 'firebase/compat/storage'
@@ -9,9 +10,11 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FB_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FB_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FB_APP_ID,
+  measurementId: process.env.REACT_APP_FB_MEASUREMENT_ID
 };
 
 firebase.initializeApp(firebaseConfig);
 export const dataRef = firebase.database();
 export const storage = firebase.storage().ref();
+export const auth = getAuth();
 export default firebase;

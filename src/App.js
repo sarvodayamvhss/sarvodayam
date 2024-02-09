@@ -1,28 +1,31 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
-import Navibar from './components/Navibar';
-import EnteNadu from './ente-nadu/EnteNadu';
-import EnteNaduReg from './ente-nadu/EnteNaduReg';
-import Resetpass from './ente-nadu/Resetpass';
-import Verify from './ente-nadu/Verify';
-import Reset from './ente-nadu/Reset';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Navibar from "./components/Navibar";
+import EnteNadu from "./ente-nadu/EnteNadu";
+import EnteNaduReg from "./ente-nadu/EnteNaduReg";
+import ForgotPass from "./ente-nadu/reset/ForgotPass";
+import OtpVerify from "./ente-nadu/reset/OtpVerify";
+import ResetPass from "./ente-nadu/reset/ResetPass";
+import { VerificationProvider } from "./ente-nadu/reset/VerificationContext";
 
 const App = () => {
   return (
-    <Router>
-      <div>
-        <Navibar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/entenadu" element={<EnteNadu />} />
-          <Route path="/Resetpass" element={<Resetpass />} />
-          <Route path="/Verify" element={<Verify />} />
-          <Route path="/Reset" element={<Reset />} />
-          <Route path="/entenadu/registration" element={<EnteNaduReg />} />
-        </Routes>
-      </div>
-    </Router>
+    <VerificationProvider>
+      <Router>
+        <div>
+          <Navibar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/entenadu" element={<EnteNadu />} />
+            <Route path="/entenadu/registration" element={<EnteNaduReg />} />
+            <Route path="/entenadu/reset-pass" element={<ForgotPass />} />
+            <Route path="/entenadu/reset-pass/verify" element={<OtpVerify />} />
+            <Route path="/entenadu/reset-pass/reset" element={<ResetPass />} />
+          </Routes>
+        </div>
+      </Router>
+    </VerificationProvider>
   );
 };
 
