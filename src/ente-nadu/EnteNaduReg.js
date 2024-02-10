@@ -187,36 +187,44 @@ function EnteNaduReg() {
     const userID = formData.email.split("@")[0] + formData.phone;
 
     try {
+      let profileImageUrl = "";
       if (profileImage !== "/ente-nadu/def_pfp.jpg") {
         const profileImageRef = storage.child(`profile_images/${userID}`);
         await profileImageRef.putString(profileImage, "data_url");
+        profileImageUrl = await profileImageRef.getDownloadURL();
         console.log("Profile image uploaded successfully!");
       } else {
         alert("Please select a profile image");
-        setLoading(false); // Reset loading state on failure
+        setLoading(false);
         return;
       }
 
+      let documentUrl = "";
       if (documentFile) {
         const documentRef = storage.child(`documents/aadhaar/${userID}`);
         await documentRef.put(documentFile);
+        documentUrl = await documentRef.getDownloadURL();
         console.log("Aadhaar uploaded successfully!");
       }
 
-      await dataRef.ref(`registrations/${userID}`).set(formData);
+      const formDataWithUrls = {
+        ...formData,
+        profileImageUrl: profileImageUrl || "/ente-nadu/def_pfp.jpg",
+        aadhaarUrl: documentUrl || "",
+      };
+
+      await dataRef.ref(`registrations/${userID}`).set(formDataWithUrls);
       console.log("Form data pushed");
       alert("Registration Successful!");
       navigate("/");
     } catch (error) {
       console.error("Error during registration:", error);
       alert("Registration failed. Please try again.");
-
-      // You can provide additional feedback or allow users to retry the upload
     } finally {
-      // Reset loading state after completion (success or failure)
       setLoading(false);
     }
   };
+
   return (
     <div className="form-container">
       <div className="registration-container">
