@@ -48,7 +48,7 @@ function EnteNadu() {
               <img src="/navlogo.png" alt="Logo 2" className="ente-nadu2" />
             </td>
             <td>
-              <img src="/logo.png" alt="Logo 3" className="ente-nadu3" />
+              <img src="/newlogo.png" alt="Logo 3" className="ente-nadu3" />
             </td>
             <td>
               <img src="/logo2-.png" alt="Logo 4" className="ente-nadu4" />

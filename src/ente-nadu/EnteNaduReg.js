@@ -231,7 +231,7 @@ function EnteNaduReg() {
         <div className="en-page-header">
           <div className="form-row">
             <div className="form-group col-md-12">
-              <img src="/logo.png" alt="" className="en-page-header-logo" />
+              <img src="/newlogo.png" alt="" className="en-page-header-logo" />
             </div>
             <div className="form-group col-md-0 ">
               <div

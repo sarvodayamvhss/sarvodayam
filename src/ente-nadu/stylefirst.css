@@ -42,7 +42,11 @@
     height: auto !important;
     margin-bottom: 0%;
 }
-
+.ente-nadu3 {
+    width: 130px !important;
+    height: auto !important;
+    margin-bottom: 0%;
+}
 button {
     --primary-color: #021f08;
     --secondary-color: #fff;
@@ -124,6 +128,9 @@ button:hover .arrow:before {
         width: 100% !important;
         height: auto !important;
     }
+    .ente-nadu3 {
+        width: 100px !important;
+    }
 
     .en-page-footer {
         padding: 10%;
@@ -137,7 +144,7 @@ button:hover .arrow:before {
         background-repeat: no-repeat;
         background-size: cover;
         min-height: 100vh;
-        margin: 0; /* Add this line to remove default margin */
+        margin: 0; 
     }
 
     .en-home-table img {
@@ -151,6 +158,9 @@ button:hover .arrow:before {
     .ente-nadu1 {
         width: 100% !important;
         height: auto !important;
+    }
+    .ente-nadu3 {
+        width: 100px !important;
     }
 
     .en-page-footer {

@@ -26,8 +26,8 @@ const Navibar = () => {
           <Nav className="ml-auto">
             <Nav.Link href="/entenadu">
               <img
-                src="/entelogo.svg"
-                width="120"
+                src="/newlogo.png"
+                width="60"
                 height="auto"
                 className="d-inline-block align-middle mr-1 breathing-icon"
                 alt="Small Logo"
