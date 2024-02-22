@@ -28,7 +28,7 @@ function ForgotPass() {
     }
 
     const userId = email.split("@")[0] + phone;
-    const userRef = dataRef.ref(`registrations/${userId}`);
+    const userRef = dataRef.ref(`app_users/${userId}`);
 
     // Check if userId exists in the database
     userRef.once("value", async (snapshot) => {

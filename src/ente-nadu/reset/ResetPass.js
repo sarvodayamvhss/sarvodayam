@@ -26,7 +26,7 @@ function ResetPass() {
     event.preventDefault();
 
     // Check if userId exists
-    const userRef = dataRef.ref(`registrations/${userId}`);
+    const userRef = dataRef.ref(`app_users/${userId}`);
     const userSnapshot = await userRef.once("value");
 
     if (userSnapshot.exists()) {
