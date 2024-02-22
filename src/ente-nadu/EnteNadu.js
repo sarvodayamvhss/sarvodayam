@@ -3,26 +3,12 @@ import "./stylefirst.css";
 
 function EnteNadu() {
   const handleDownload = () => {
-    // Replace 'your_google_drive_file_id' with the actual file ID from your Google Drive
-    const googleDriveFileId = "your_google_drive_file_id";
-
-    // Construct the direct download link using the file ID
-    const downloadLink = `https://drive.google.com/uc?export=download&id=${googleDriveFileId}`;
-
-    // Creating a temporary link element
-    const link = document.createElement("a");
-
-    // Setting the href attribute to the direct download link
-    link.href = downloadLink;
-
-    // Setting the download attribute to force download
-    link.download = "your_app.apk";
-
-    // Appending the link to the body and triggering the click event
+    // Temp
+    const fileUrl = 'https://github.com/Sarvodayam-VHSS/entenadu/releases/download/v1.0.0/entenadu-v1.0.0.apk';
+    const link = document.createElement('a');
+    link.href = fileUrl;
     document.body.appendChild(link);
     link.click();
-
-    // Removing the link from the body
     document.body.removeChild(link);
   };
 
