@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useVerificationContext } from './reset/VerificationContext';
 import './AdminPage.css';
 
 const AdminPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const { isAdminAuthenticated, authenticateAdmin } = useVerificationContext();
+    const [lastPath, setLastPath] = useState('');
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (!isAdminAuthenticated) {
             navigate('/entenadu/login');
         }
-    }, [isLoggedIn, navigate]);
+    }, [isAdminAuthenticated, navigate]);
+
+    useEffect(() => {
+        if (lastPath && location.pathname === '/entenadu/login' && lastPath !== location.pathname) {
+            authenticateAdmin(false); 
+            navigate('/entenadu/login', { replace: true }); 
+        }
+        setLastPath(location.pathname); 
+    }, [location, navigate, authenticateAdmin, lastPath]); 
 
     const handleLogout = () => {
-
-        setIsLoggedIn(false);
-
-        navigate('/entenadu/login');
-
-        if (location.state && location.state.from === '/entenadu/admin') {
-            window.history.replaceState(null, '', '/entenadu/login');
-        }
+        authenticateAdmin(false); 
+        navigate('/entenadu/login', { replace: true });
     };
 
     const handleAddReminderClick = () => {
