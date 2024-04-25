@@ -1,76 +1,84 @@
-/* Reminder component styles */
+/* Reminder Container */
 .reminder-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .reminder-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .reminder-form {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .reminder-input {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 10px;
-  }
-  
-  .reminder-btn {
-    padding: 8px 16px;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-btn {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .edit-btn {
-    background-color: #28a745;
-    color: #fff;
-    margin-right: 5%;
-    margin-left: 5%;
-  }
-  
-  .delete-btn {
-    background-color: #dc3545;
-    color: #fff;
-  }
-  
-  .reminder-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .reminder-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .reminder-item input {
-    flex: 1;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 10px;
-  }
-  
+  background-color: rgba(249, 249, 249, 0.1);  /* Very light blue background with a hint of airiness */
+  border: 2px solid #d3d3d3; /* Light gray border with a slight hand-drawn feel */
+  border-radius: 0px; /* Rounded corners */
+  padding: 2rem; /* Spacious padding for content */
+  margin: 0 auto; /* Center the container horizontally */
+  margin-top: 2%;
+  max-width: 800px; /* Limit width for larger screens */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle bottom shadow */
+  display: flex; /* Allow stacking of header and content sections */
+  flex-direction: column; /* Stack vertically */
+  font-family: poppins, serif; /* Artistic fonts for a handwritten style */
+}
+
+/* Reminder Header */
+.reminder-header {
+  color: #333; /* Dark gray text for contrast */
+  font-size: 1.8rem; /* Larger header size for emphasis */
+  margin-bottom: 1rem; /* Space after the header */
+  text-align: center; /* Center the header text */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); /* Subtle text shadow for depth */
+}
+
+/* Reminder Form */
+.reminder-form {
+  display: flex; /* Arrange input and button horizontally */
+  align-items: center; /* Align vertically */
+  justify-content: space-between; /* Distribute elements evenly */
+  margin-bottom: 1rem; /* Space after the form */
+}
+
+/* Reminder Input */
+.reminder-input {
+  background: #f2f2f2; /* Light gray background for input field */
+  border: 1px solid #ccc; /* Light border with a textured feel */
+  border-radius: 5px; /* Softly rounded corners */
+  color: #333; /* Dark gray text for readability */
+  padding: 0.75rem 1rem; /* Add some padding inside */
+  font-size: 1rem; /* Standard input size */
+  font-style: italic; /* Italic text for a more artistic feel */
+  flex-grow: 1; /* Allow input to fill available space */
+  outline: none; /* Remove focus outline */
+}
+
+.reminder-input:focus {
+  border-color: #999; /* Slightly darker border on focus */
+}
+
+/* Reminder Button (Add Reminder) */
+.reminder-btn.add-btn {
+  background: #f0e68c; /* Light yellow accent color with a vintage feel */
+  color: #333; /* Dark gray text on accent */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Consistent rounded corners */
+  padding: 0.75rem 1rem; /* Match input padding */
+  font-size: 1rem; /* Standard button size */
+  cursor: pointer; /* Indicate clickable action */
+  transition: background 0.2s ease-in-out; /* Smooth hover effect */
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1); /* Subtle inset shadow for a textured button */
+}
+
+.reminder-btn.add-btn:hover {
+  background: #e6de7a; /* Darken yellow on hover */
+}
+
+/* Reminder List */
+.reminder-list {
+  list-style: none; /* Remove default list style */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+/* Reminder Item */
+.reminder-item {
+  background: #f5f5f5; /* Even lighter gray background for each item */
+  border: none; /* Remove border for cleaner look */
+  border-radius: 5px; /* Consistent rounded corners */
+  padding: 0.75rem 1rem; /* Match input/button padding */
+  display: flex; /* Allow horizontal arrangement of content and buttons */
+  align-items: center; /* Vertically align content */
+  justify-content: space-between; /* Distribute elements evenly */
+  margin-bottom: 0.5rem; /* Add some spacing between items */
+}

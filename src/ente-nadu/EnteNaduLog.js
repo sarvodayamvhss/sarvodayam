@@ -40,7 +40,11 @@ const EnteNaduLog = () => {
 
     return (
         <div className="login-container">
-            <h2 className="login-header">Login</h2>
+            <button class="ui-btn">
+  <span>
+    Login 
+  </span>
+</button>
             <form className="login-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
