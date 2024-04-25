@@ -60,3 +60,18 @@
 .admin-page-logout:hover {
     transform: translateY(-5px);
 }
+@media only screen and (max-width: 768px) {
+    .admin-page-buttons {
+        width: 80%; /* Adjust width for smaller screens */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .admin-page-buttons {
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+    }
+    .admin-page-button, .admin-page-logout {
+        width: 100%; /* Full width for buttons on smaller screens */
+        margin-bottom: 10px; /* Add space between stacked buttons */
+    }
+}
