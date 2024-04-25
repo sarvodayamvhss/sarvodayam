@@ -6,21 +6,19 @@ export const useVerificationContext = () => useContext(VerificationContext);
 
 export const VerificationProvider = ({ children }) => {
   const [verificationData, setVerificationData] = useState(null);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
 
   const storeVerificationData = (data) => {
     setVerificationData((prevData) => ({ ...prevData, ...data }));
   };
 
-  const storeConfirmationResult = (confirmationResult) => {
-    setVerificationData((prevData) => ({
-      ...prevData,
-      confirmationResult,
-    }));
+  const authenticateAdmin = (status) => {
+    setIsAdminAuthenticated(status);
   };
 
   return (
     <VerificationContext.Provider
-      value={{ verificationData, storeVerificationData, storeConfirmationResult }}
+      value={{ verificationData, isAdminAuthenticated, storeVerificationData, authenticateAdmin }}
     >
       {children}
     </VerificationContext.Provider>

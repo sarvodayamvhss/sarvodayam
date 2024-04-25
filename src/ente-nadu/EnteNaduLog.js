@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useVerificationContext } from './reset/VerificationContext'; 
 import './Login.css';
 
 const EnteNaduLog = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    
 
+    
+
+    const { authenticateAdmin } = useVerificationContext(); 
+    useEffect(() => {
+        authenticateAdmin(false);
+    }, [authenticateAdmin]);
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
@@ -19,12 +27,12 @@ const EnteNaduLog = () => {
         event.preventDefault();
 
         if (username === 'admin' && password === 'admin') {
-            // Navigate to the admin page upon successful login
+            authenticateAdmin(true); 
             navigate('/entenadu/admin');
-
-            // Reset username and password fields
             setUsername('');
             setPassword('');
+            
+
         } else {
             alert('Invalid username or password. Please try again.');
         }
