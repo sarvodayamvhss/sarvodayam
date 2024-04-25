@@ -45,9 +45,9 @@ function EnteNadu() {
 
       <div className="en-page-action1">
         <div>
-          <a href="/entenadu/registration">
+          <a href="/entenadu/login">
             <button>
-              Register
+            Login
               <div className="arrow-wrapper">
                 <div className="arrow"></div>
               </div>
