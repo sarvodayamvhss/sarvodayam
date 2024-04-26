@@ -5,6 +5,7 @@ import "./Reminder.css";
 const Reminder = () => {
   const [reminders, setReminders] = useState([]);
   const [newReminderText, setNewReminderText] = useState("");
+  const [editingText, setEditingText] = useState({ id: null, text: "" });
 
   useEffect(() => {
     fetchReminders();
@@ -29,7 +30,7 @@ const Reminder = () => {
         setReminders(sortedReminders);
       }
     } catch (error) {
-      console.error("Error fetching notifications:", error);
+      console.error("Error fetching reminders:", error);
     }
   };
 
@@ -51,36 +52,42 @@ const Reminder = () => {
       const newReminderRef = dataRef.ref("reminders").child(remainderId);
       await newReminderRef.set(newReminder);
     } catch (error) {
-      console.error("Failed to save remainder to database ", error);
+      console.error("Failed to save reminder to database ", error);
     }
     setNewReminderText("");
   };
 
   const handleEditReminder = (id, newText) => {
-    const updatedReminders = reminders.map((reminder) =>
-      reminder.id === id ? { ...reminder, text: newText } : reminder
-    );
+    setEditingText({ id, text: newText });
+  };
 
-    setReminders(updatedReminders);
+  const handleSaveReminder = async (id) => {
+    try {
+      const reminderRef = dataRef.ref(`reminders/${id}`);
+      await reminderRef.update({ text: editingText.text });
+      const updatedReminders = reminders.map((reminder) =>
+        reminder.id === id ? { ...reminder, text: editingText.text } : reminder
+      );
+      setReminders(updatedReminders);
+      setEditingText({ id: null, text: "" });
+    } catch (error) {
+      console.error("Failed to update reminder in the database ", error);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditingText({ id: null, text: "" });
   };
 
   const handleDeleteReminder = async (id) => {
     try {
-      const reminderRef = dataRef.ref("reminders").child(id);
+      const reminderRef = dataRef.ref(`reminders/${id}`);
       await reminderRef.remove();
+      const filteredReminders = reminders.filter((reminder) => reminder.id !== id);
+      setReminders(filteredReminders);
     } catch (error) {
-      console.error("Failed to remove remainder in the database ", error);
+      console.error("Failed to remove reminder from the database ", error);
     }
-  };
-
-  const toggleEditMode = async (id) => {
-    const updatedReminders = reminders.map((reminder) =>
-      reminder.id === id
-        ? { ...reminder, editing: !reminder.editing }
-        : reminder
-    );
-
-    setReminders(updatedReminders);
   };
 
   return (
@@ -101,24 +108,39 @@ const Reminder = () => {
       <ul className="reminder-list">
         {reminders.map((reminder) => (
           <li key={reminder.id} className="reminder-item">
-            {reminder.editing ? (
+            {editingText.id === reminder.id ? (
               <input
                 type="text"
-                value={reminder.text} // Display current text of the reminder
-                onChange={(e) =>
-                  handleEditReminder(reminder.id, e.target.value)
-                }
+                value={editingText.text}
+                onChange={(e) => handleEditReminder(reminder.id, e.target.value)}
                 className="reminder-input"
               />
             ) : (
               <span>{reminder.text}</span>
             )}
-            <button
-              onClick={() => toggleEditMode(reminder.id)}
-              className="reminder-btn edit-btn"
-            >
-              {reminder.editing ? "Save" : "Edit"}
-            </button>
+            {editingText.id === reminder.id ? (
+              <>
+                <button
+                  onClick={() => handleSaveReminder(reminder.id)}
+                  className="reminder-btn save-btn"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={handleCancelEdit}
+                  className="reminder-btn cancel-btn"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => setEditingText({ id: reminder.id, text: reminder.text })}
+                className="reminder-btn edit-btn"
+              >
+                Edit
+              </button>
+            )}
             <button
               onClick={() => handleDeleteReminder(reminder.id)}
               className="reminder-btn delete-btn"
