@@ -31,6 +31,9 @@ const AdminPage = () => {
     const handleAddReminderClick = () => {
         navigate('/entenadu/reminder');
     };
+    const handleYoutubeClick = () => {
+        navigate('/entenadu/youtube');
+    };
 
     const handleRegisterClick = () => {
         navigate('/entenadu/registration');
@@ -42,6 +45,9 @@ const AdminPage = () => {
             <div className="admin-page-buttons">
                 <button className="admin-page-button" onClick={handleAddReminderClick}>
                     Add Reminder
+                </button>
+                <button className="admin-page-button" onClick={handleYoutubeClick}>
+                    Add Youtube Link 
                 </button>
                 <button className="admin-page-button" onClick={handleRegisterClick}>
                     Register

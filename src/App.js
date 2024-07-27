@@ -11,6 +11,7 @@ import ForgotPass from './ente-nadu/reset/ForgotPass';
 import OtpVerify from './ente-nadu/reset/OtpVerify';
 import ResetPass from './ente-nadu/reset/ResetPass';
 import { VerificationProvider } from './ente-nadu/reset/VerificationContext'; 
+import YouTubeLink from './ente-nadu/Youtube';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/entenadu/login" element={<EnteNaduLog />} />
           <Route path="/entenadu/admin" element={<AdminPage />} />
           <Route path="/entenadu/reminder" element={<Reminder />} />
+          <Route path="/entenadu/youtube" element={<YouTubeLink />} />
           <Route path="/entenadu/reset-pass" element={<ForgotPass />} />
           <Route path="/entenadu/reset-pass/verify" element={<OtpVerify />} />
           <Route path="/entenadu/reset-pass/reset" element={<ResetPass />} />
@@ -34,3 +36,6 @@ const App = () => {
 };
 
 export default App;
+
+
+
