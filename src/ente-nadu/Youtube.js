@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useVerificationContext } from './reset/VerificationContext';  // Adjust the path as needed
+import React, { useEffect, useState } from 'react';
 import './Youtube.css';
+import { useNavigate } from 'react-router-dom';
+import { useVerificationContext } from './reset/VerificationContext';
 
-const YouTubeLinkPage = () => {
+const YouTubeLink = () => {
   const [links, setLinks] = useState([]);
   const [newLinkText, setNewLinkText] = useState('');
+  const [newLinkDescription, setNewLinkDescription] = useState('');
   const [editingText, setEditingText] = useState('');
-  const navigate = useNavigate();
-  const { isAdminAuthenticated } = useVerificationContext(); // Get authentication status
+  const [editingDescription, setEditingDescription] = useState('');
+  const navigate = useNavigate(); 
+  const { isAdminAuthenticated } = useVerificationContext();
 
   useEffect(() => {
     if (!isAdminAuthenticated) {
-      navigate('/entenadu/login'); // Redirect to login if not authenticated
+      navigate('/entenadu/login'); 
     }
   }, [isAdminAuthenticated, navigate]);
 
-  const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-
-  const handleAddLink = async () => {
+  const handleAddLink = () => {
     if (newLinkText.trim() === '') {
       alert('Please enter a YouTube link.');
       return;
@@ -31,23 +30,23 @@ const YouTubeLinkPage = () => {
       return;
     }
 
-    try {
-      const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet&key=${API_KEY}`);
-      const videoData = response.data.items[0].snippet;
-
-      const newLink = {
-        id: new Date().getTime(),
-        text: newLinkText.trim(),
-        thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`,
-        description: truncateDescription(videoData.description, 20),
-        editing: false,
-      };
-
-      setLinks([...links, newLink]);
-      setNewLinkText('');
-    } catch (error) {
-      console.error('Error fetching video data:', error);
+    const descriptionWords = newLinkDescription.trim().split(/\s+/);
+    if (descriptionWords.length > 15) {
+      alert('Description cannot exceed 15 words.');
+      return;
     }
+
+    const newLink = {
+      id: new Date().getTime(),
+      text: newLinkText.trim(),
+      description: newLinkDescription.trim(),
+      thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`,
+      editing: false
+    };
+
+    setLinks([...links, newLink]);
+    setNewLinkText('');
+    setNewLinkDescription('');
   };
 
   const handleEditLink = (id) => {
@@ -57,11 +56,12 @@ const YouTubeLinkPage = () => {
 
     const editingLink = updatedLinks.find((link) => link.id === id);
     setEditingText(editingLink.text);
+    setEditingDescription(editingLink.description);
 
     setLinks(updatedLinks);
   };
 
-  const handleSaveEdit = async (id) => {
+  const handleSaveEdit = (id) => {
     if (editingText.trim() === '') {
       alert('Please enter a YouTube link.');
       return;
@@ -73,19 +73,19 @@ const YouTubeLinkPage = () => {
       return;
     }
 
-    try {
-      const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet&key=${API_KEY}`);
-      const videoData = response.data.items[0].snippet;
-
-      const updatedLinks = links.map((link) =>
-        link.id === id ? { ...link, text: editingText.trim(), thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`, description: truncateDescription(videoData.description, 20), editing: false } : link
-      );
-
-      setLinks(updatedLinks);
-      setEditingText('');
-    } catch (error) {
-      console.error('Error fetching video data:', error);
+    const descriptionWords = editingDescription.trim().split(/\s+/);
+    if (descriptionWords.length > 15) {
+      alert('Description cannot exceed 15 words.');
+      return;
     }
+
+    const updatedLinks = links.map((link) =>
+      link.id === id ? { ...link, text: editingText.trim(), description: editingDescription.trim(), thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`, editing: false } : link
+    );
+
+    setLinks(updatedLinks);
+    setEditingText('');
+    setEditingDescription('');
   };
 
   const handleDeleteLink = (id) => {
@@ -97,18 +97,14 @@ const YouTubeLinkPage = () => {
     setEditingText(e.target.value);
   };
 
+  const handleChangeEditingDescription = (e) => {
+    setEditingDescription(e.target.value);
+  };
+
   const extractVideoId = (url) => {
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     var match = url.match(regExp);
-    return (match&&match[7].length===11)? match[7] : false;
-  };
-
-  const truncateDescription = (description, wordLimit) => {
-    const words = description.split(' ');
-    if (words.length > wordLimit) {
-      return words.slice(0, wordLimit).join(' ') + '...';
-    }
-    return description;
+    return (match && match[7].length === 11) ? match[7] : false;
   };
 
   return (
@@ -122,6 +118,12 @@ const YouTubeLinkPage = () => {
           className="youtube-link-input"
           placeholder="Enter YouTube link"
         />
+        <textarea
+          value={newLinkDescription}
+          onChange={(e) => setNewLinkDescription(e.target.value)}
+          className="youtube-link-input"
+          placeholder="Enter video description (max 15 words)"
+        />
         <button onClick={handleAddLink} className="youtube-link-btn add-btn">
           Add Link
         </button>
@@ -130,12 +132,19 @@ const YouTubeLinkPage = () => {
         {links.map((link) => (
           <li key={link.id} className="youtube-link-item">
             {link.editing ? (
-              <input
-                type="text"
-                value={editingText}
-                onChange={handleChangeEditingText}
-                className="youtube-link-input"
-              />
+              <>
+                <input
+                  type="text"
+                  value={editingText}
+                  onChange={handleChangeEditingText}
+                  className="youtube-link-input"
+                />
+                <textarea
+                  value={editingDescription}
+                  onChange={handleChangeEditingDescription}
+                  className="youtube-link-input"
+                />
+              </>
             ) : (
               <>
                 <a href={link.text} target="_blank" rel="noopener noreferrer">
@@ -144,7 +153,7 @@ const YouTubeLinkPage = () => {
                 <a href={link.text} target="_blank" rel="noopener noreferrer">
                   {link.text}
                 </a>
-                <p className="youtube-description">{link.description}</p>
+                <p>{link.description}</p>
               </>
             )}
             {link.editing ? (
@@ -166,4 +175,4 @@ const YouTubeLinkPage = () => {
   );
 };
 
-export default YouTubeLinkPage;
+export default YouTubeLink;
