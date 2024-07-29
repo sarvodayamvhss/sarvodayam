@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Youtube.css';
 
 const YouTubeLink = () => {
@@ -6,20 +7,37 @@ const YouTubeLink = () => {
   const [newLinkText, setNewLinkText] = useState('');
   const [editingText, setEditingText] = useState('');
 
-  const handleAddLink = () => {
+  const API_KEY = 'AIzaSyB6awIgbkVW4KZTnCIe5twSS3CSDzgWR2M';
+
+  const handleAddLink = async () => {
     if (newLinkText.trim() === '') {
       alert('Please enter a YouTube link.');
       return;
     }
 
-    const newLink = {
-      id: new Date().getTime(),
-      text: newLinkText.trim(),
-      editing: false
-    };
+    const videoId = extractVideoId(newLinkText);
+    if (!videoId) {
+      alert('Please enter a valid YouTube link.');
+      return;
+    }
 
-    setLinks([...links, newLink]);
-    setNewLinkText('');
+    try {
+      const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet&key=${API_KEY}`);
+      const videoData = response.data.items[0].snippet;
+
+      const newLink = {
+        id: new Date().getTime(),
+        text: newLinkText.trim(),
+        thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`,
+        description: truncateDescription(videoData.description, 20),
+        editing: false
+      };
+
+      setLinks([...links, newLink]);
+      setNewLinkText('');
+    } catch (error) {
+      console.error('Error fetching video data:', error);
+    }
   };
 
   const handleEditLink = (id) => {
@@ -33,13 +51,26 @@ const YouTubeLink = () => {
     setLinks(updatedLinks);
   };
 
-  const handleSaveEdit = (id) => {
-    const updatedLinks = links.map((link) =>
-      link.id === id ? { ...link, text: editingText.trim(), editing: false } : link
-    );
+  const handleSaveEdit = async (id) => {
+    const videoId = extractVideoId(editingText);
+    if (!videoId) {
+      alert('Please enter a valid YouTube link.');
+      return;
+    }
 
-    setLinks(updatedLinks);
-    setEditingText('');
+    try {
+      const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet&key=${API_KEY}`);
+      const videoData = response.data.items[0].snippet;
+
+      const updatedLinks = links.map((link) =>
+        link.id === id ? { ...link, text: editingText.trim(), thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`, description: truncateDescription(videoData.description, 20), editing: false } : link
+      );
+
+      setLinks(updatedLinks);
+      setEditingText('');
+    } catch (error) {
+      console.error('Error fetching video data:', error);
+    }
   };
 
   const handleDeleteLink = (id) => {
@@ -49,6 +80,20 @@ const YouTubeLink = () => {
 
   const handleChangeEditingText = (e) => {
     setEditingText(e.target.value);
+  };
+
+  const extractVideoId = (url) => {
+    const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^\/\n\s]+)/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
+
+  const truncateDescription = (description, wordLimit) => {
+    const words = description.split(' ');
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+    return description;
   };
 
   return (
@@ -77,9 +122,15 @@ const YouTubeLink = () => {
                 className="youtube-link-input"
               />
             ) : (
-              <a href={link.text} target="_blank" rel="noopener noreferrer">
-                {link.text}
-              </a>
+              <>
+                <a href={link.text} target="_blank" rel="noopener noreferrer">
+                  <img src={link.thumbnail} alt="YouTube Thumbnail" className="youtube-thumbnail" />
+                </a>
+                <a href={link.text} target="_blank" rel="noopener noreferrer">
+                  {link.text}
+                </a>
+                <p className="youtube-description">{link.description}</p>
+              </>
             )}
             {link.editing ? (
               <button onClick={() => handleSaveEdit(link.id)} className="youtube-link-btn save-btn">

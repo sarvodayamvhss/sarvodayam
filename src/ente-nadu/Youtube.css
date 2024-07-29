@@ -66,4 +66,108 @@
     text-decoration: none;
     color: #333;
   }
+  .youtube-thumbnail {
+    width: 120px; /* or any desired width */
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .youtube-link-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.youtube-link-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.youtube-link-form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.youtube-link-input {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.youtube-link-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.youtube-link-list {
+  list-style: none;
+  padding: 0;
+}
+
+.youtube-link-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.youtube-link-item a {
+  margin-right: 10px;
+}
+
+.youtube-link-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.youtube-link-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.youtube-link-form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.youtube-link-input {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.youtube-link-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.youtube-link-list {
+  list-style: none;
+  padding: 0;
+}
+
+.youtube-link-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.youtube-link-item a {
+  margin-right: 10px;
+}
+
+.youtube-thumbnail {
+  width: 120px;
+  height: auto;
+  display: block;
+}
+.youtube-description {
+  font-size: 14px;
+  color: #333;
+}
+
+
   
