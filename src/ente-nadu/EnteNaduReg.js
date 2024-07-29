@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import { dataRef, storage } from "../Firebase";
 import { useNavigate } from "react-router-dom";
+import { useVerificationContext } from './reset/VerificationContext';
 import imageCompression from "browser-image-compression";
 import "./style.css";
 
@@ -11,6 +12,13 @@ function EnteNaduReg() {
   const [isStudentOfVHSS, setIsStudentOfVHSS] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { isAdminAuthenticated } = useVerificationContext();
+
+  useEffect(() => {
+    if (!isAdminAuthenticated) {
+      navigate('/entenadu/login'); 
+    }
+  }, [isAdminAuthenticated, navigate]);
 
   const handleCheckboxChange = () => {
     setIsFirmSelected(!isFirmSelected);

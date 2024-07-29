@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { dataRef } from "../Firebase";
 import "./Reminder.css";
+import { useNavigate } from 'react-router-dom';
+import { useVerificationContext } from './reset/VerificationContext';  // Adjust the path as needed
+
 
 const Reminder = () => {
   const [reminders, setReminders] = useState([]);
   const [newReminderText, setNewReminderText] = useState("");
   const [editingText, setEditingText] = useState({ id: null, text: "" });
+  const navigate = useNavigate(); 
+  const { isAdminAuthenticated } = useVerificationContext();
+
+  useEffect(() => {
+    if (!isAdminAuthenticated) {
+      navigate('/entenadu/login'); 
+    }
+  }, [isAdminAuthenticated, navigate]);
 
   useEffect(() => {
     fetchReminders();
