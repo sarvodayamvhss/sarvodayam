@@ -7,7 +7,7 @@ const YouTubeLink = () => {
   const [newLinkText, setNewLinkText] = useState('');
   const [editingText, setEditingText] = useState('');
 
-  const API_KEY = 'AIzaSyB6awIgbkVW4KZTnCIe5twSS3CSDzgWR2M';
+  const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
   const handleAddLink = async () => {
     if (newLinkText.trim() === '') {
@@ -52,6 +52,11 @@ const YouTubeLink = () => {
   };
 
   const handleSaveEdit = async (id) => {
+    if (editingText.trim() === '') {
+      alert('Please enter a YouTube link.');
+      return;
+    }
+
     const videoId = extractVideoId(editingText);
     if (!videoId) {
       alert('Please enter a valid YouTube link.');
