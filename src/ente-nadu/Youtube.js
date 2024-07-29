@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useVerificationContext } from './reset/VerificationContext';  // Adjust the path as needed
 import './Youtube.css';
 
-const YouTubeLink = () => {
+const YouTubeLinkPage = () => {
   const [links, setLinks] = useState([]);
   const [newLinkText, setNewLinkText] = useState('');
   const [editingText, setEditingText] = useState('');
+  const navigate = useNavigate();
+  const { isAdminAuthenticated } = useVerificationContext(); // Get authentication status
+
+  useEffect(() => {
+    if (!isAdminAuthenticated) {
+      navigate('/entenadu/login'); // Redirect to login if not authenticated
+    }
+  }, [isAdminAuthenticated, navigate]);
 
   const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
@@ -30,7 +40,7 @@ const YouTubeLink = () => {
         text: newLinkText.trim(),
         thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`,
         description: truncateDescription(videoData.description, 20),
-        editing: false
+        editing: false,
       };
 
       setLinks([...links, newLink]);
@@ -88,9 +98,9 @@ const YouTubeLink = () => {
   };
 
   const extractVideoId = (url) => {
-    const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^\/\n\s]+)/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return (match&&match[7].length===11)? match[7] : false;
   };
 
   const truncateDescription = (description, wordLimit) => {
@@ -156,4 +166,4 @@ const YouTubeLink = () => {
   );
 };
 
-export default YouTubeLink;
+export default YouTubeLinkPage;
