@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Youtube.css";
 import { useNavigate } from "react-router-dom";
 import { useVerificationContext } from "./reset/VerificationContext";
-import { dataRef } from "../Firebase";
+import firebase, { dataRef } from "../Firebase";
 
 const YouTubeLink = () => {
   const [links, setLinks] = useState([]);
@@ -57,6 +57,7 @@ const YouTubeLink = () => {
       videoUrl: newLinkText.trim(),
       description: newLinkDescription.trim(),
       thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`,
+      timestamp: firebase.database.ServerValue.TIMESTAMP,
       editing: false,
     };
 
